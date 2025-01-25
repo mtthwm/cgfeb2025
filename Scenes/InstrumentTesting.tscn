@@ -1,0 +1,163 @@
+[gd_scene load_steps=17 format=3 uid="uid://dmi5k3lmvimgl"]
+
+[ext_resource type="Script" path="res://Scripts/Instrument.gd" id="1_4mw40"]
+[ext_resource type="AudioStream" uid="uid://c67c7ht1hspdx" path="res://Audio/Guitar/Guitar0.wav" id="2_2sv6j"]
+[ext_resource type="AudioStream" uid="uid://dn6bstvro4k1u" path="res://Audio/Guitar/Guitar1.wav" id="3_3jdd0"]
+[ext_resource type="AudioStream" uid="uid://dvm376h78ock8" path="res://Audio/Guitar/Guitar2.wav" id="4_pa888"]
+[ext_resource type="AudioStream" uid="uid://g3ah5evtv48j" path="res://Audio/Guitar/Guitar3.wav" id="5_20bd0"]
+[ext_resource type="AudioStream" uid="uid://djcr2w34iduj5" path="res://Audio/Guitar/Guitar4.wav" id="6_q4nbj"]
+[ext_resource type="Script" path="res://Scripts/Judge.gd" id="7_h3svv"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ba3yd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0rrt8"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_82xhk"]
+resource_name = "MusicIndicator"
+length = 0.04
+step = 0.02
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.02, 1, 1.5, 1.5, 1.5, 0.04, 1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_vvgg8"]
+length = 0.001
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eubnq"]
+_data = {
+"MusicIndicator": SubResource("Animation_82xhk"),
+"RESET": SubResource("Animation_vvgg8")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hlrr6"]
+albedo_color = Color(0.235294, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_343dk"]
+albedo_color = Color(0.435294, 1, 0.466667, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0vbkn"]
+albedo_color = Color(1, 1, 0.298039, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ojdn8"]
+albedo_color = Color(1, 0.317647, 1, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Guitar" type="Node3D" parent="." node_paths=PackedStringArray("indicators", "audioPlayers")]
+script = ExtResource("1_4mw40")
+indicators = [NodePath("Indicators/Red/AnimationPlayer"), NodePath("Indicators/Blue/AnimationPlayer"), NodePath("Indicators/Green/AnimationPlayer"), NodePath("Indicators/Yellow/AnimationPlayer"), NodePath("Indicators/Purple/AnimationPlayer")]
+audioPlayers = [NodePath("AudioSources/Note0"), NodePath("AudioSources/Note1"), NodePath("AudioSources/Note2"), NodePath("AudioSources/Note3"), NodePath("AudioSources/Note4")]
+
+[node name="Indicators" type="Node3D" parent="Guitar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+
+[node name="Red" type="MeshInstance3D" parent="Guitar/Indicators"]
+mesh = SubResource("SphereMesh_ba3yd")
+surface_material_override/0 = SubResource("StandardMaterial3D_0rrt8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Guitar/Indicators/Red"]
+libraries = {
+"": SubResource("AnimationLibrary_eubnq")
+}
+
+[node name="Blue" type="MeshInstance3D" parent="Guitar/Indicators"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45215, 0, 0)
+mesh = SubResource("SphereMesh_ba3yd")
+surface_material_override/0 = SubResource("StandardMaterial3D_hlrr6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Guitar/Indicators/Blue"]
+libraries = {
+"": SubResource("AnimationLibrary_eubnq")
+}
+
+[node name="Green" type="MeshInstance3D" parent="Guitar/Indicators"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.87483, 0, 0)
+mesh = SubResource("SphereMesh_ba3yd")
+surface_material_override/0 = SubResource("StandardMaterial3D_343dk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Guitar/Indicators/Green"]
+libraries = {
+"": SubResource("AnimationLibrary_eubnq")
+}
+
+[node name="Yellow" type="MeshInstance3D" parent="Guitar/Indicators"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.36364, 0, 0)
+mesh = SubResource("SphereMesh_ba3yd")
+surface_material_override/0 = SubResource("StandardMaterial3D_0vbkn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Guitar/Indicators/Yellow"]
+libraries = {
+"": SubResource("AnimationLibrary_eubnq")
+}
+
+[node name="Purple" type="MeshInstance3D" parent="Guitar/Indicators"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.76888, 0, 0)
+mesh = SubResource("SphereMesh_ba3yd")
+surface_material_override/0 = SubResource("StandardMaterial3D_ojdn8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Guitar/Indicators/Purple"]
+libraries = {
+"": SubResource("AnimationLibrary_eubnq")
+}
+
+[node name="AudioSources" type="Node3D" parent="Guitar"]
+
+[node name="Note0" type="AudioStreamPlayer3D" parent="Guitar/AudioSources"]
+stream = ExtResource("2_2sv6j")
+
+[node name="Note1" type="AudioStreamPlayer3D" parent="Guitar/AudioSources"]
+stream = ExtResource("3_3jdd0")
+
+[node name="Note2" type="AudioStreamPlayer3D" parent="Guitar/AudioSources"]
+stream = ExtResource("4_pa888")
+
+[node name="Note3" type="AudioStreamPlayer3D" parent="Guitar/AudioSources"]
+stream = ExtResource("5_20bd0")
+
+[node name="Note4" type="AudioStreamPlayer3D" parent="Guitar/AudioSources"]
+stream = ExtResource("6_q4nbj")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.787602, 0.616184, 0, -0.616184, 0.787602, -0.229102, 1.63838, 2.20833)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 5, 0)
+
+[node name="Judge" type="Node3D" parent="." node_paths=PackedStringArray("metronome")]
+script = ExtResource("7_h3svv")
+metronome = NodePath("../Metronome")
+
+[node name="Metronome" type="Node3D" parent="." node_paths=PackedStringArray("indicators", "audioPlayers")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45469, 1.41536)
+script = ExtResource("1_4mw40")
+indicators = [NodePath("Indicators/Red/AnimationPlayer")]
+audioPlayers = [NodePath("AudioSources/Note0")]
+
+[node name="Indicators" type="Node3D" parent="Metronome"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.211016, 0, -1.23832)
+
+[node name="Red" type="MeshInstance3D" parent="Metronome/Indicators"]
+mesh = SubResource("SphereMesh_ba3yd")
+surface_material_override/0 = SubResource("StandardMaterial3D_0rrt8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Metronome/Indicators/Red"]
+libraries = {
+"": SubResource("AnimationLibrary_eubnq")
+}
+
+[node name="AudioSources" type="Node3D" parent="Metronome"]
+
+[node name="Note0" type="AudioStreamPlayer3D" parent="Metronome/AudioSources"]
+stream = ExtResource("2_2sv6j")
