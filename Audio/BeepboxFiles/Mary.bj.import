@@ -3,11 +3,12 @@
 importer="beatmap.beepbox"
 type="Beatmap"
 uid="uid://drhbo246abjcr"
-valid=false
+path="res://.godot/imported/Mary.bj-9da222086c72c7d389c5b1f41c297907.tres"
 
 [deps]
 
 source_file="res://Audio/BeepboxFiles/Mary.bj"
+dest_files=["res://.godot/imported/Mary.bj-9da222086c72c7d389c5b1f41c297907.tres"]
 
 [params]
 

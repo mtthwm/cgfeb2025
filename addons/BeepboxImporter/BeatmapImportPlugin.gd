@@ -42,7 +42,7 @@ func _get_recognized_extensions():
     return ["bj"]
 
 func _get_save_extension():
-    return "bj.import"
+    return "tres"
 
 func _get_priority():
     return 2
@@ -88,6 +88,8 @@ func _import(source_file, save_path, options, r_platform_variants, r_gen_files):
                 beatmap.notes.append(note)
             tickOffset += beatmap.division*json.data["beatsPerBar"]
 
-        return ResourceSaver.save(beatmap, "%s.%s" % [save_path, _get_save_extension()])
+        var err = ResourceSaver.save(beatmap, "%s.%s" % [save_path, _get_save_extension()])
+        print_debug(err)
+        return err
     else:
         print_debug("JSON PARSE ERROR IN %s" % source_file)
