@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dmi5k3lmvimgl"]
+[gd_scene load_steps=16 format=3 uid="uid://dmi5k3lmvimgl"]
 
 [ext_resource type="Script" path="res://Scripts/Instrument.gd" id="1_4mw40"]
 [ext_resource type="AudioStream" uid="uid://c67c7ht1hspdx" path="res://Audio/Guitar/Guitar0.wav" id="2_2sv6j"]
@@ -6,7 +6,6 @@
 [ext_resource type="AudioStream" uid="uid://dvm376h78ock8" path="res://Audio/Guitar/Guitar2.wav" id="4_pa888"]
 [ext_resource type="AudioStream" uid="uid://g3ah5evtv48j" path="res://Audio/Guitar/Guitar3.wav" id="5_20bd0"]
 [ext_resource type="AudioStream" uid="uid://djcr2w34iduj5" path="res://Audio/Guitar/Guitar4.wav" id="6_q4nbj"]
-[ext_resource type="Script" path="res://Scripts/Judge.gd" id="7_h3svv"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_ba3yd"]
 
@@ -134,10 +133,6 @@ transform = Transform3D(1, 0, 0, 0, 0.787602, 0.616184, 0, -0.616184, 0.787602, 
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 5, 0)
-
-[node name="Judge" type="Node3D" parent="." node_paths=PackedStringArray("metronome")]
-script = ExtResource("7_h3svv")
-metronome = NodePath("../Metronome")
 
 [node name="Metronome" type="Node3D" parent="." node_paths=PackedStringArray("indicators", "audioPlayers")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45469, 1.41536)
