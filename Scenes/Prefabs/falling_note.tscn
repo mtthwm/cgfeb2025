@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjc2mwigrv1em"]
+
+[ext_resource type="Script" path="res://Scripts/FallingNote.gd" id="1_axdhd"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_x1k6r"]
+
+[node name="FallingNote" type="Node3D" node_paths=PackedStringArray("mesh")]
+script = ExtResource("1_axdhd")
+height = 2.0
+speed = 1.0
+mesh = NodePath("MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_x1k6r")

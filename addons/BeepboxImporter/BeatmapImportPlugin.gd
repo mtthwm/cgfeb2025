@@ -81,15 +81,14 @@ func _import(source_file, save_path, options, r_platform_variants, r_gen_files):
             var index = int(index_string) - 1
             var pattern = patterns[index]
             for bb_note in pattern["notes"]:
-                var note = Note.new()
-                note.pitch = _get_allowed_pitch(bb_note["pitches"][0], options.allowed_pitches)
-                note.tick = bb_note["points"][0]["tick"] + tickOffset
-                note.length = bb_note["points"][1]["tick"] - bb_note["points"][0]["tick"]
+                var note = [0,0,0];
+                note[Beatmap.NoteOpts.PITCH] = _get_allowed_pitch(bb_note["pitches"][0], options.allowed_pitches)
+                note[Beatmap.NoteOpts.TICK] = bb_note["points"][0]["tick"] + tickOffset
+                note[Beatmap.NoteOpts.LENGTH] = bb_note["points"][1]["tick"] - bb_note["points"][0]["tick"]
                 beatmap.notes.append(note)
             tickOffset += beatmap.division*json.data["beatsPerBar"]
 
         var err = ResourceSaver.save(beatmap, "%s.%s" % [save_path, _get_save_extension()])
-        print_debug(err)
         return err
     else:
         print_debug("JSON PARSE ERROR IN %s" % source_file)

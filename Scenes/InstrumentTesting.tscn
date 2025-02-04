@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dmi5k3lmvimgl"]
+[gd_scene load_steps=19 format=3 uid="uid://dmi5k3lmvimgl"]
 
 [ext_resource type="Script" path="res://Scripts/Instrument.gd" id="1_4mw40"]
 [ext_resource type="AudioStream" uid="uid://c67c7ht1hspdx" path="res://Audio/Guitar/Guitar0.wav" id="2_2sv6j"]
@@ -7,7 +7,8 @@
 [ext_resource type="AudioStream" uid="uid://g3ah5evtv48j" path="res://Audio/Guitar/Guitar3.wav" id="5_20bd0"]
 [ext_resource type="AudioStream" uid="uid://djcr2w34iduj5" path="res://Audio/Guitar/Guitar4.wav" id="6_q4nbj"]
 [ext_resource type="Script" path="res://Scripts/Judge.gd" id="7_5clwq"]
-[ext_resource type="Resource" uid="uid://drhbo246abjcr" path="res://Audio/BeepboxFiles/Mary.bj" id="8_ba8vw"]
+[ext_resource type="Resource" uid="uid://c28oix6vsrhbt" path="res://Audio/BeepboxFiles/Song1.bj" id="8_2kdv6"]
+[ext_resource type="PackedScene" uid="uid://bjc2mwigrv1em" path="res://Scenes/Prefabs/falling_note.tscn" id="9_q4oii"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_ba3yd"]
 
@@ -74,7 +75,7 @@ libraries = {
 }
 
 [node name="Blue" type="MeshInstance3D" parent="Guitar/Indicators"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45215, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
 mesh = SubResource("SphereMesh_ba3yd")
 surface_material_override/0 = SubResource("StandardMaterial3D_hlrr6")
 
@@ -84,7 +85,7 @@ libraries = {
 }
 
 [node name="Green" type="MeshInstance3D" parent="Guitar/Indicators"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.87483, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
 mesh = SubResource("SphereMesh_ba3yd")
 surface_material_override/0 = SubResource("StandardMaterial3D_343dk")
 
@@ -94,7 +95,7 @@ libraries = {
 }
 
 [node name="Yellow" type="MeshInstance3D" parent="Guitar/Indicators"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.36364, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 0)
 mesh = SubResource("SphereMesh_ba3yd")
 surface_material_override/0 = SubResource("StandardMaterial3D_0vbkn")
 
@@ -104,7 +105,7 @@ libraries = {
 }
 
 [node name="Purple" type="MeshInstance3D" parent="Guitar/Indicators"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.76888, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 mesh = SubResource("SphereMesh_ba3yd")
 surface_material_override/0 = SubResource("StandardMaterial3D_ojdn8")
 
@@ -131,19 +132,20 @@ stream = ExtResource("5_20bd0")
 stream = ExtResource("6_q4nbj")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.787602, 0.616184, 0, -0.616184, 0.787602, -0.229102, 1.63838, 2.20833)
+transform = Transform3D(1, 0, 0, 0, 0.990176, 0.13983, 0, -0.13983, 0.990176, 0, 0, 6)
+projection = 1
+size = 10.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 5, 0)
 
 [node name="Metronome" type="Node3D" parent="." node_paths=PackedStringArray("indicators", "audioPlayers")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45469, 1.41536)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 1.5)
 script = ExtResource("1_4mw40")
 indicators = [NodePath("Indicators/Red/AnimationPlayer")]
 audioPlayers = [NodePath("AudioSources/Note0")]
 
 [node name="Indicators" type="Node3D" parent="Metronome"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.211016, 0, -1.23832)
 
 [node name="Red" type="MeshInstance3D" parent="Metronome/Indicators"]
 mesh = SubResource("SphereMesh_ba3yd")
@@ -160,6 +162,8 @@ libraries = {
 stream = ExtResource("2_2sv6j")
 
 [node name="Judge" type="Node3D" parent="." node_paths=PackedStringArray("metronome")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -1)
 script = ExtResource("7_5clwq")
-beatmap = ExtResource("8_ba8vw")
+beatmap = ExtResource("8_2kdv6")
 metronome = NodePath("../Metronome")
+fallingNotePrefab = ExtResource("9_q4oii")

@@ -3,7 +3,13 @@ class_name Beatmap
 
 @export var bpm: int
 @export var division: int
-var notes: Array[Note]
+@export var notes: Array[Array]
+
+enum NoteOpts {
+    PITCH,
+    TICK,
+    LENGTH,
+}
 
 func _init() -> void:
     bpm = 100

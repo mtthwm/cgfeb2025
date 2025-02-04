@@ -1,0 +1,16 @@
+[remap]
+
+importer="beatmap.beepbox"
+type="Beatmap"
+uid="uid://c28oix6vsrhbt"
+path="res://.godot/imported/Song1.bj-dc37771b4741702dc207a879669ad6a2.tres"
+
+[deps]
+
+source_file="res://Audio/BeepboxFiles/Song1.bj"
+dest_files=["res://.godot/imported/Song1.bj-dc37771b4741702dc207a879669ad6a2.tres"]
+
+[params]
+
+channel_index=0
+allowed_pitches=[60, 62, 64, 65, 67]
